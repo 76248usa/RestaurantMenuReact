@@ -1,3 +1,84 @@
+/*import React from 'react';
+import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
+import { List, ListGroupItem } from "reactstrap";
+import {COMMENTS} from '../shared/comments';
+
+
+	function RenderDish({dish}){
+
+		if (dish != null) {
+
+			return (
+				<div className="col-12 col-md-5 m-1">
+				<Card>
+					<CardImg width="100%" src={dish.image} 
+					alt={dish.name} />
+					<CardBody>
+						<CardTitle>{dish.name}</CardTitle>
+						<CardText>{dish.description}</CardText>
+					</CardBody>
+				</Card>
+				</div>
+				);
+		
+	} else {
+
+		return <div></div>;
+	}
+
+}
+
+function RenderComments({comments, dish}) {
+
+	if (dish != null) {
+
+		return (
+			
+			<div className = "col-12 col-md-5 m-1">
+			<div className="container">
+			<h4>Comments</h4>
+			{comments.map(comment => (
+				<ul className="list-unstyled" key={comment.id}>
+				<li>{comment.comment}</li>
+				<li>{comment.author} --
+				{new Intl.DateTimeFormat('en-US',{year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</li>
+				</ul>
+			)
+			)}
+			</div>
+			</div>
+
+		);
+
+	} else {
+
+		<div></div>
+	}
+
+	} 
+
+
+	const DishDetail = ({dish}) => {
+
+				return (
+				<div className="container">
+				<div className="row">
+			
+				<RenderDish dish={dish} />
+				<RenderComments comments={dish.comments} />
+				</div>
+
+				</div>	
+
+			);
+		
+
+	}
+
+
+export default DishDetail;*/
+
+
 import React from 'react';
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 import { List, ListGroupItem } from "reactstrap";
@@ -5,53 +86,8 @@ import {COMMENTS} from '../shared/comments';
 
 
 
-class DishDetail extends React.Component {
 
-	constructor(props){
-		super(props);
-
-		this.state = {
-
-		comments: [
-
-{
-	id: '1',
-	text: 'Imagine all the eatables, living in confusion!',
-	name: '-- John Lemmon, Oct 17, 2012'
-
-},
-{
-	id: '2',
-	text: 'Sends anyone to heaven -- I wish I could get my mother-in-law to eat it',
-	name: '-- Paul McVites, Sep 06, 2014'
-
-},
-{
-	id: '3',
-	text: 'Eat it, just eat it!',
-	name: '-- Michael Jaikisan, Feb 14, 2015'
-},
-{
-	id: '4',
-	text: 'Ultimate reaching for the stars',
-	name: '-- Ringo Starry, Dec 03, 2013'
-},
-{
-	id: '5',
-	text: 'It is your birthday! We are going to party',
-	name: '-- 25 Cent, Dec 03, 2011'
-}
-
-]
-		}
-	}
-
-	componentDidMount(){
-
-		
-	}
-
-	renderSelectedDish(){
+	function RenderDish({dish}){
 
 		if (this.props.dish != null) {
 
@@ -75,9 +111,9 @@ class DishDetail extends React.Component {
 
 }
 
-renderComments() {
+function RenderComments({comments}) {
 
-	if (this.props.dish != null) {
+	
 
 		return (
 			
@@ -97,32 +133,32 @@ renderComments() {
 
 		);
 
-	} else {
-
-		<div></div>
-	}
-
+	
 	} 
 
 
-	render(){
+	const DishDetail = (props) => {
 
-		
+		if (props.dish != null) {
 
 				return (
 				<div className="container">
 				<div className="row">
 			
-				{this.renderSelectedDish()}
-				{this.renderComments()}
+				<RenderDish dish={props.dish} />
+				<RenderComments comments = {props.dish.comments} />
 				</div>
 
 				</div>	
 
 			);
-		
+
+		} else {
+
+		<div></div>
+		}
 
 	}
-}
+
 
 export default DishDetail;
