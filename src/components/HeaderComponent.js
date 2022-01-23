@@ -12,6 +12,7 @@ class Header extends Component {
             	<NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
           		</div>
         	</Navbar>
+        	<div className="jumbotron">
         	<div className="container">
         		<div className="row row-header">
   					<div className="col-12 col-sm-6">
@@ -23,7 +24,7 @@ class Header extends Component {
       				</div>
   				</div>
 			</div>
-        	
+        	</div>
 
 			</React.Fragment>
 
