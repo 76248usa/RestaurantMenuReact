@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Card,CardImg,CardText,CardBody,CardTitle,Breadcrumb,BreadcrumbItem,
     Button,Modal,ModalHeader,ModalBody,Label,Col,Row} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 
     
@@ -55,15 +56,23 @@ function RenderComments({comments, postComment, dishId}) {
     }
 }
 
-
-
-
 const DishDetail = (props) => {
     
         
      if (props.dish!=null) {
         return(
             <div className="container">
+            <div className="row">
+                    <Breadcrumb>
+                        
+                        <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>Menu</h3>
+                        <hr />
+                    </div>                
+                </div>
                 <div className="row">
                    
                     <div className="col-12">
@@ -71,14 +80,17 @@ const DishDetail = (props) => {
                         <hr />
                     </div>                
                 </div>
+
+
                 <div className="row">
-                    <RenderDish dish={props.dish} />
-                    <RenderComments comments={props.dish.comments}
-                        postComment={props.postComment}
-                        dishId={props.dish.id} />
-                     
+                    
+                        <RenderDish dish={props.dish} />
+                   
+                        <RenderComments comments={props.comments} />
+                    
                 </div>
-            </div>
+                </div>
+
         );
     } else {
         return <div></div>
